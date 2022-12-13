@@ -1,7 +1,15 @@
 package com.curso.ecommerce.springecommerce.model;
 
+import jakarta.persistence.*;
+
+import java.util.List;
+
+@Entity
+@Table(name = "usuarios")
 public class Usuario {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private String username;
@@ -10,6 +18,14 @@ public class Usuario {
     private String direccion;
     private String telefono;
     private String tipoUsuario;
+
+    //atributo de la clase Producto
+    @OneToMany(mappedBy = "usuario")
+    private List<Producto> producto;
+
+    //atributo de la clase Orden
+    @OneToMany(mappedBy = "usuario")
+    private List<Orden> orden;
 
     public Usuario() {
     }
@@ -87,6 +103,22 @@ public class Usuario {
 
     public void setTipoUsuario(String tipoUsuario) {
         this.tipoUsuario = tipoUsuario;
+    }
+
+    public List<Producto> getProducto() {
+        return producto;
+    }
+
+    public void setProducto(List<Producto> producto) {
+        this.producto = producto;
+    }
+
+    public List<Orden> getOrden() {
+        return orden;
+    }
+
+    public void setOrden(List<Orden> orden) {
+        this.orden = orden;
     }
 
     @Override

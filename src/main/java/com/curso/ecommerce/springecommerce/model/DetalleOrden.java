@@ -1,12 +1,26 @@
 package com.curso.ecommerce.springecommerce.model;
 
+import jakarta.persistence.*;
+
+@Entity
+@Table(name = "detallesOrdenes")
 public class DetalleOrden {
 
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
     private String nombre;
     private double cantidad;
     private double precio;
     private double total;
+
+    //atributo de la clase Orden
+    @OneToOne
+    private Orden orden;
+
+    //atributo de la clase Producto
+    @OneToOne
+    private Producto producto;
 
     public DetalleOrden() {
     }
@@ -57,6 +71,22 @@ public class DetalleOrden {
 
     public void setTotal(double total) {
         this.total = total;
+    }
+
+    public Orden getOrden() {
+        return orden;
+    }
+
+    public void setOrden(Orden orden) {
+        this.orden = orden;
+    }
+
+    public Producto getProducto() {
+        return producto;
+    }
+
+    public void setProducto(Producto producto) {
+        this.producto = producto;
     }
 
     @Override
