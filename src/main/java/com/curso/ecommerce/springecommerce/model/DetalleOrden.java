@@ -19,7 +19,7 @@ public class DetalleOrden {
     private Orden orden;
 
     //atributo de la clase Producto
-    @OneToOne
+    @ManyToOne
     private Producto producto;
 
     public DetalleOrden() {
