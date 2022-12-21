@@ -5,6 +5,7 @@ import com.curso.ecommerce.springecommerce.repository.ProductoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -12,6 +13,11 @@ public class ProductoServiceImp implements ProductoService{
 
     @Autowired
     private ProductoRepository productoRepository;
+
+    @Override
+    public List<Producto> findAll() {
+        return productoRepository.findAll();
+    }
 
     @Override
     public Producto save(Producto producto) {
